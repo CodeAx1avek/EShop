@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{% static 'css/mycss.css' %}">
+  <link rel="icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/122358662?s=400&u=d95a44ffb7bd8fbfa693f7c40fe3340a019ab6f5&v=4">
+  <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+  <style>
+
+  </style>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
+
+    body {
+
+      background-color: #eee;
+    }
+
+    .navbar-nav>li>a {
+
+      text-transform: uppercase;
+      font-size: 12px;
+      margin-right: 20px;
+      color: #ffffff;
+    }
+
+
+    .navbar-toggler {
+      padding: .20rem .50rem;
+      font-size: 1.25rem;
+      line-height: 1;
+      background-color: transparent;
+      border: 1px solid white;
+
+    }
+
+    .nav-link {
+
+      color: #ffffff !important;
+    }
+
+
+    .wrapper {
+      width: 100%;
+      position: absolute;
+      height: 100%;
+      background-color: orange;
+      clip-path: polygon(81% 0, 100% 0, 100% 50%, 100% 100%, 65% 100%);
+      transition: 1s all;
+    }
+
+    .navbar-brand {
+
+      color: #fff;
+      font-family: 'Allerta Stencil', sans-serif;
+      margin-bottom: 4px;
+      font-size: 27px;
+    }
+
+    .navbar-red:hover .wrapper {
+
+      clip-path: polygon(75% 0, 100% 0, 100% 50%, 100% 100%, 50% 100%);
+
+    }
+
+    .navbar-brand:hover {
+
+      color: #fff;
+
+    }
+
+    .navbar-red {
+
+      background-color: red;
+      color: #fff;
+
+    }
+
+    .all-show {
+
+      z-index: 10;
+    }
+    .badge {
+  padding: 0.2rem 0.8rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+}
+
+.badge-info {
+  margin: auto;
+  background-color: #d59c9c;
+  color: #fff;
+}
+
+  </style>
+  <title>Ecommerce Shop</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-red navbar-dark">
+    <div class="wrapper">
+
+    </div>
+    <div class="container-fluid all-show">
+      <a class="navbar-brand" href="/">E-shop   <i class="fa-solid fa-compact-disc fa-spin" style="--fa-animation-duration: 30s; --fa-animation-iteration-count: 1;"></i></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">Events</a>
+          </li>
+          {% if username %}
+          <li class="nav-item">
+            <a class="nav-link">Welcome {{username}}</a>
+          </li>
+          {% endif %}
+
+        </ul>
+       <ul class="nav justify-content-center">
+        <nav class="navbar bg-body-tertiary">
+          <div class="container-fluid">
+            
+          </div>
+        </nav>
+        {% if request.session.customer %}
+          <li class="nav-item">
+            <a class="nav-link" href="/cart">
+              <small>Cart</small>
+              <span class="badge badge-info ml-1">{{request.session.cart.keys|length}}</span>
+            </a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="/login">
+              <small>Cart</small>
+              <span class="badge badge-info ml-1">{{request.session.cart.keys|length}}</span>
+            </a>
+          </li>
+          {% endif %}
+          {% if request.session.customer %}
+          <li class="nav-item">
+            <a class="nav-link" href="/orders">
+              <small>Order</small>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/signup">Sing up</a>
+          </li>
+          {% endif %}
+        </ul>
+        
+      </div>
+    </div>
+    </div>
+  </nav>
+  {% block body %}
+  {% endblock body %}
+  <!-- Footer -->
+  <div class="">
+
+    <!-- Footer -->
+    <footer class="text-center text-lg-start text-white" style="background-color: #1c2331">
+      <!-- Section: Social media -->
+      <section class="d-flex justify-content-between p-4" style="background-color: #ff0000">
+        <!-- Left -->
+        <div class="me-5">
+          <span>Get connected with us on social networks:</span>
+        </div>
+        <!-- Left -->
+
+        <!-- Right -->
+        <div>
+          <a href="" class="text-white me-4">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="" class="text-white me-4">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="" class="text-white me-4">
+            <i class="fab fa-google"></i>
+          </a>
+          <a href="" class="text-white me-4">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="" class="text-white me-4">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="" class="text-white me-4">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+        <!-- Right -->
+      </section>
+      <!-- Section: Social media -->
+
+      <!-- Section: Links  -->
+      <section class="">
+        <div class="container text-center text-md-start mt-5">
+          <!-- Grid row -->
+          <div class="row mt-3">
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+              <!-- Content -->
+              <h6 class="text-uppercase fw-bold">The Sachin & Chandan Store</h6>
+              <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 60px; background-color: #7c4dff; height: 2px" />
+              <p>
+                Here you can use rows and columns to organize your footer
+                content. Lorem ipsum dolor sit amet, consectetur adipisicing
+                elit.
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold">Products</h6>
+              <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 60px; background-color: #7c4dff; height: 2px" />
+              <p>
+                <a href="#!" class="text-white">MDBootstrap</a>
+              </p>
+              <p>
+                <a href="#!" class="text-white">MDWordPress</a>
+              </p>
+              <p>
+                <a href="#!" class="text-white">BrandFlow</a>
+              </p>
+              <p>
+                <a href="#!" class="text-white">Bootstrap Angular</a>
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold">Useful links</h6>
+              <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 60px; background-color: #7c4dff; height: 2px" />
+              <p>
+                <a href="#!" class="text-white">Your Account</a>
+              </p>
+              <p>
+                <a href="#!" class="text-white">Become an Affiliate</a>
+              </p>
+              <p>
+                <a href="#!" class="text-white">Shipping Rates</a>
+              </p>
+              <p>
+                <a href="#!" class="text-white">Help</a>
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold">Contact</h6>
+              <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 60px; background-color: #7c4dff; height: 2px" />
+              <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
+              <p><i class="fas fa-envelope mr-3"></i> chandan@example.com</p>
+              <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
+              <p><i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+            </div>
+            <!-- Grid column -->
+          </div>
+          <!-- Grid row -->
+        </div>
+      </section>
+      <!-- Section: Links  -->
+
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(76, 0, 0, 0.192)">
+        <a class="text-white" href="https://github.com/CodeAvek">© 2023 Copyright</a>
+      </div>
+
+      <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+    <!-- End of .container -->
+    <!-- End Footer -->
+    <!-- <script>
+      check.onclick = toggleclick;
+      function toggleclick() {
+        if (check.checked) pass.type = 'text';
+        else pass.type = 'password';
+      }
+
+    </script> -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"></script>
+      <script src="{% static 'fontawesomefree/js/fontawesome.js' %}"></script>
+      <script src="{% static 'fontawesomefree/js/solid.js' %}"></script>
+      <script src="{% static 'fontawesomefree/js/brands.js' %}"></script>
+</body>
+
+</html>

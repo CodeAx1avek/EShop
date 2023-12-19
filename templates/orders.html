@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% load static %}
+{% load cart %}
+{% load currency %}
+
+{% block body %}
+<style>
+    /* Custom styles for the table */
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+}
+
+.table th,
+.table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
+
+/* Add some additional styles for the "Your Orders" heading */
+.display-4 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+/* Styling for the "Completed" and "Pending" badges */
+.badge {
+  padding: 0.3rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+}
+
+.badge-success {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.badge-warning {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+/* Adjust the image size and add some spacing */
+.rounded-circle {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+/* Additional border and padding for the outer div */
+.border {
+  border: 1px solid #dee2e6;
+  padding: 10px;
+}
+
+/* Remove default list style from ul */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+</style>
+<div class="">
+    <div class="border  p-1 m-0">
+        <div class="table-responsive-md">
+            <p class="display-4 pl-4 ml-4">Your Orders</p>
+            <hr>
+            {% if orders %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Sno</th>
+                        <th>Image</th>
+                        <th>Title</th>
+                        <th>Date</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td><img style="height: 50px;" class="rounded-circle" src="{{order.product.image.url}}" alt="image"></td>
+                        <td>{{order.product.name}}</td>
+                        <td>{{order.date}}</td>
+                        <td>{{order.price|currency_rupeee}}</td>
+                        <td>{{order.quantity}}</td>
+                        <td>{{order.quantity|multiply:order.price|currency_rupeee}}</td>
+                        {% if order.status %}
+                        <td><small class="badge badge-success">Completed</small></td>
+                        {% else %}
+                        <td><small class="badge badge-warning">Pending</small></td>
+                        {% endif %}                  
+                    </tr>
+                    {% endfor %}
+                </tbody>                
+            </table>
+            {% else %}
+            <p class="display-3 p-4">No recent order!</p>
+            {% endif %}
+        </div>
+        {% endblock body %}
