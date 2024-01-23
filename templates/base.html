@@ -143,21 +143,12 @@
             
           </div>
         </nav>
-        {% if request.session.customer %}
           <li class="nav-item">
             <a class="nav-link" href="/cart">
               <small>Cart</small>
               <span class="badge badge-info ml-1">{{request.session.cart.keys|length}}</span>
             </a>
           </li>
-          {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="/login">
-              <small>Cart</small>
-              <span class="badge badge-info ml-1">{{request.session.cart.keys|length}}</span>
-            </a>
-          </li>
-          {% endif %}
           {% if request.session.customer %}
           <li class="nav-item">
             <a class="nav-link" href="/orders">

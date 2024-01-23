@@ -39,3 +39,8 @@ def total_cart_price(products,cart):
 @register.filter(name = 'multiply')
 def multiply(number1,number2):
     return number1 * number2
+
+
+@register.filter(name = 'amount')
+def amount(number1):
+    return int(number1 * 100)

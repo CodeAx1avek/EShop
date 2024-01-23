@@ -8,18 +8,16 @@ class Signup(View):
     def post(self,request):
         PostData = request.POST
         first_name = PostData.get('firstname')
-        last_name = PostData.get('lastname')
         phone = PostData.get('phone')
         email = PostData.get('email')
         password = PostData.get('password')
         value = {
             'first_name' : first_name,
-            'last_name' : last_name,
             'phone' : phone,
             'email' : email
         }
         password = make_password(password)
-        customer = Customer(first_name = first_name,last_name = last_name,
+        customer = Customer(first_name = first_name,
                                 phone = phone,
                                 email = email,
                                 password = password)
@@ -27,7 +25,8 @@ class Signup(View):
     
         if not error_msg:
             customer.register()
-            print('problem')
+            request.session["customer"] = customer.id
+            request.session["first_name"] = customer.first_name
             return redirect('index')
         else:
             data = {
@@ -40,10 +39,6 @@ class Signup(View):
         if not customer.first_name:
             error_msg = 'Please enter first name:)'
         elif len(customer.first_name) < 2:
-            error_msg = 'Name lenght must be minimum 4 character :)'
-        elif not customer.last_name:
-            error_msg = 'Please enter last name :)'
-        elif len(customer.last_name) < 2:
             error_msg = 'Name lenght must be minimum 4 character :)'
         isExist = customer.isExist()
         if isExist:
