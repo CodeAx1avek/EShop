@@ -60,13 +60,14 @@ You can contribute to our projects, this project is open for all
 
 ### Option 2: CodeAx1
 
-If you're learning Django and want to see how i do program, please do follow on [![instagram](https://img.shields.io/badge/instagram-1DA1F2?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/codeax1)
+If you're learning Django and want to see how i do program, please do follow on 
+[![instagram](https://img.shields.io/badge/instagram-1DA1F2?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/codeax1)
 
 ---
 
 ## Site is Live on Pythonanywhere
 
-- [![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](http://sachin111.pythonanywhere.com/)
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](http://sachin111.pythonanywhere.com/)
 
 ---
 
