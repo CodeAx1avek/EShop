@@ -10,7 +10,8 @@ class Order(models.Model):
     address = models.CharField(max_length=255, default='', blank=True)
     phone = models.CharField(max_length=20, default='', blank=True)
     date = models.DateField(auto_now_add=True)  # Use auto_now_add to set the date automatically on creation
-    status = models.CharField(max_length=20, choices=[('pending', 'Pending'), ('paid', 'Paid')], default='pending')
+    status = models.CharField(max_length=20, choices=[('pending', 'Pending'), ('paid', 'Paid')])
+    is_approved = models.BooleanField(default=False)
 
     def place_order(self):
         return self.save()
@@ -18,4 +19,8 @@ class Order(models.Model):
     @staticmethod
     def get_orders_by_customer(customer_id):
         return Order.objects.filter(customer=customer_id).order_by('-date')
+    
+
+    def __str__(self) -> str:
+        return f"{self.customer} - {self.price}- {self.address}"
 
