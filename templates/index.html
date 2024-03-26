@@ -146,6 +146,18 @@
                             <h5 class="card-title">{{product.name}}</h5>
                             <p class="card-text"><b>{{product.price|currency_rupeee}}</b></p>
                             <p class="card-description">{{product.description}}</p>
+                            <div class="form-group">
+                                <label for="shoeSize{{ product.id }}">Select Size (Indian Size)</label>
+                                <select class="form-control" id="shoeSize{{ product.size }}" name="shoeSize">
+                                    <option value=""></option>
+                                    <option value="5">5 (Indian)</option>
+                                    <option value="6">6 (Indian)</option>
+                                    <option value="7">7 (Indian)</option>
+                                    <option value="8">8 (Indian)</option>
+                                    <option value="9">9 (Indian)</option>
+                                    <option value="10">10 (Indian)</option>
+                                </select>
+                            </div>
                             <div class="card-footer p-0">
                                 {% if product|is_in_cart:request.session.cart %}
                                 <div class="row no-gutters align-items-center">
